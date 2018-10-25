@@ -1,34 +1,21 @@
 import React, { Component } from 'react';
 
-// uncontrolled component example -
-
 class AddContact extends Component {
-  constructor(props) {
-    super(props);
-    this.nameInput = React.createRef();
-    this.emailInput = React.createRef();
-    this.phoneInput = React.createRef();
-  }
+  state = {
+    name: '',
+    email: '',
+    phone: ''
+  };
+
+  onChange = e => this.setState({ [e.target.name]: e.target.value });
 
   onSubmit = e => {
     e.preventDefault();
-    const contact = {
-      name: this.nameInput.current.value,
-      email: this.emailInput.current.value,
-      phone: this.phoneInput.current.value
-    };
-
-    console.log(contact);
-  };
-
-  static defaultProps = {
-    name: 'Fred Smith',
-    email: 'fred@yahoo.com',
-    phone: '77777777'
+    console.log(this.state);
   };
 
   render() {
-    const { name, email, phone } = this.props;
+    const { name, email, phone } = this.state;
     return (
       <div className="card mb-3">
         <div className="card-header">Add Contact</div>
@@ -41,8 +28,8 @@ class AddContact extends Component {
                 name="name"
                 className="form-control form-control-lg"
                 placeholder="Enter Name..."
-                defaultValue={name}
-                ref={this.nameInput}
+                value={name}
+                onChange={this.onChange}
               />
             </div>
             <div className="form-group">
@@ -52,8 +39,8 @@ class AddContact extends Component {
                 name="email"
                 className="form-control form-control-lg"
                 placeholder="Enter Email..."
-                defaultValue={email}
-                ref={this.emailInput}
+                value={email}
+                onChange={this.onChange}
               />
             </div>
             <div className="form-group">
@@ -63,8 +50,8 @@ class AddContact extends Component {
                 name="phone"
                 className="form-control form-control-lg"
                 placeholder="Enter Phone..."
-                defaultValue={phone}
-                ref={this.phoneInput}
+                value={phone}
+                onChange={this.onChange}
               />
             </div>
             <input
