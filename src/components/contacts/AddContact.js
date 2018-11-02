@@ -40,6 +40,8 @@ class AddContact extends Component {
     dispatch({ type: 'ADD_CONTACT', payload: newContact });
     // clear the state after submission
     this.setState({ name: '', email: '', phone: '', errors: {} });
+
+    this.props.history.push('/');
   };
 
   render() {
